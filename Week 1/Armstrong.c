@@ -23,11 +23,11 @@ int main()
    }
    if(sum == n)
    {
-       printf("Number is an armstrong number");
+       printf("%d is an armstrong number", n);
    }
    else
    {
-       printf("Number is not an armstrong number");
+       printf("%d isn't an armstrong number", n);
    }
 
    return 0;
