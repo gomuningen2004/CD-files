@@ -13,6 +13,10 @@
         } else {
             printf("Number is 0.\n");
         }
+        char* fraction = strchr(yytext, '.');
+        if (fraction != NULL) {
+            printf("fractional part: %s\n", fraction + 1);
+        }
     }
 
     .|\n { }
