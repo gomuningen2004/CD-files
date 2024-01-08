@@ -3,8 +3,7 @@
 
 int main() {
     int lines = 0, words = 0, characters = 0, tabs = 0, spaces = 0;
-    char ch, prevCh = ' '; // Initialize prevCh to a space to handle consecutive spaces
-
+    char ch, prevCh = ' ';
     printf("Enter text (Press Ctrl+D (Ctrl+Z on Windows) to end input):\n");
 
     while ((ch = getchar()) != EOF) {
