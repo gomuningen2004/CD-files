@@ -101,7 +101,7 @@ int main() {
             printf("Array.\n");
             break;
         default:
-            printf("Error in the expression.\n");
+            printf("Not a valid expression.\n");
             break;
     }
 
