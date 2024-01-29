@@ -1,23 +1,21 @@
 #include <stdio.h>
 #include <ctype.h>
 
-// Function to determine the type of input based on the given rules
 int determineType(char str[]) {
     int state = 0;
     int i = 0;
 
-    // Initial check for the first character
     if (isalpha(str[0])) {
-        state = 1;  // Variable
+        state = 1;
     } else if (isdigit(str[0])) {
-        state = 2;  // Integer constant
+        state = 2;
     } else {
-        state = 10; // Error
+        state = 10;
     }
 
     while (str[i] != '\0') {
         switch (state) {
-            case 1: // Variable
+            case 1:
                 if (isalnum(str[i])) {
                     state = 1;
                 } else if (str[i] == '(') {
@@ -25,50 +23,49 @@ int determineType(char str[]) {
                 } else if (str[i] == '[') {
                     state = 5;
                 } else {
-                    state = 10; // Error
+                    state = 10;
                 }
                 break;
 
-            case 2: // Integer constant
+            case 2:
                 if (isdigit(str[i])) {
                     state = 2;
                 } else if (str[i] == '.' && isdigit(str[i + 1])) {
                     state = 4;
                 } else {
-                    state = 10; // Error
+                    state = 10;
                 }
                 break;
 
-            case 3: // Function
+            case 3:
                 if (str[i] == ')' && str[i + 1] == '\0') {
                     state = 6;
                 } else {
-                    state = 10; // Error
+                    state = 10;
                 }
                 break;
 
-            case 4: // Real constant
+            case 4:
                 if (isdigit(str[i])) {
                     state = 4;
                 } else {
-                    state = 10; // Error
+                    state = 10;
                 }
                 break;
 
-            case 5: // Array
+            case 5:
                 if (isdigit(str[i])) {
                     state = 5;
                 } else if (str[i] == ']' && str[i + 1] == '\0') {
                     state = 7;
                 } else {
-                    state = 10; // Error
+                    state = 10;
                 }
                 break;
         }
 
         i++;
 
-        // Break the loop if an error is encountered
         if (state == 10) {
             break;
         }
@@ -81,33 +78,30 @@ int main() {
     char str[20];
 
     printf("Enter the string: ");
-    gets(str); // Note: gets is deprecated, consider using fgets
+    gets(str);
 
-    // Determine the type of input based on rules
     int type = determineType(str);
 
-    // Print the original string
     printf("%s\n", str);
 
-    // Output the result based on the determined type
     switch (type) {
         case 1:
-            printf("Input is a variable.\n");
+            printf("Variable.\n");
             break;
         case 2:
-            printf("Input is an integer constant.\n");
+            printf("Integer constant.\n");
             break;
         case 4:
-            printf("Input is a real constant.\n");
+            printf("Real constant.\n");
             break;
         case 6:
-            printf("Input is a function.\n");
+            printf("Function.\n");
             break;
         case 7:
-            printf("Input is an array.\n");
+            printf("Array.\n");
             break;
         default:
-            printf("There is an error in the given expression.\n");
+            printf("Error in the expression.\n");
             break;
     }
 
