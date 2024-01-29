@@ -86,22 +86,22 @@ int main() {
 
     switch (type) {
         case 1:
-            printf("Variable.\n");
+            printf("%s is a variable.\n", str);
             break;
         case 2:
-            printf("Integer constant.\n");
+            printf("%s is an integer constant.\n", str);
             break;
         case 4:
-            printf("Real constant.\n");
+            printf("%s is a real constant.\n", str);
             break;
         case 6:
-            printf("Function.\n");
+            printf("%s is a function.\n", str);
             break;
         case 7:
-            printf("Array.\n");
+            printf("%s is an array.\n", str);
             break;
         default:
-            printf("Not a valid expression.\n");
+            printf("%s is not a valid expression.\n", str);
             break;
     }
 
