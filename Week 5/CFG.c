@@ -1,59 +1,53 @@
-#include <stdio.h>
-#include <conio.h>
-#include <ctype.h>
+#include<stdio.h>
+#include<conio.h>
+#include<ctype.h>
 
-struct production {
-    char starting_symbol;
-    char non_terminal;
+struct str
+{
+    char st[1];
     char rule[20];
-} productions[15];
+}g[15];
 
-int main() {
-    int i, j, n;
-
-    printf("Enter the number of productions: ");
-    scanf("%d", &n);
-    printf("Enter the productions:\n");
-
-    int starting_symbol_set = 0;
-
-    for (i = 0; i < n; i++) {
-        printf("Enter the non-terminal: ");
-        scanf(" %c", &productions[i].non_terminal);
-
-        if (!starting_symbol_set) {
-            productions[i].starting_symbol = productions[i].non_terminal;
-            starting_symbol_set = 1;
-        }
-
-        printf("Enter the RHS production: ");
-        scanf("%s", productions[i].rule);
-
-        if (i > 0) {
-            productions[i].starting_symbol = productions[i - 1].starting_symbol;
-        }
+void main()
+{
+    int i,j,n;
+    printf("enter the number of productions:");
+    scanf("%d",&n);
+    printf("enter the productions:\n");
+    
+    for(i=0;i<n;i++)
+    {
+        printf("enter the non-terminal: ");
+        scanf("%s",g[i].st);
+        printf("enter the RHS production: ");
+        scanf("%s",g[i].rule);
     }
 
-    printf("\nEntered productions are:\n");
-    for (i = 0; i < n; i++) {
-        printf("%c -> %s\n", productions[i].non_terminal, productions[i].rule);
-        printf("The starting symbol of the production is: %c\n", productions[i].starting_symbol);
+    printf("\nentered productions are:\n");
+    for(i=0;i<n;i++)
+    {
+        printf("%c%c%c",g[i].st[0],'-','>');
+        printf("%s\n",g[i].rule);
+        printf("the starting symbol of the production is: ");
+        printf("%c\n",g[i].st[0]);
     }
 
-    printf("\nThe non-terminals are:");
-    for (i = 0; i < n; i++) {
-        printf(" %c", productions[i].non_terminal);
+    printf("\nthe non-terminals are: ");
+    for(i=0;i<n;i++)
+    {
+        printf("%c ",g[i].st[0]);
     }
 
-    printf("\nThe terminals are:");
-    for (i = 0; i < n; i++) {
-        for (j = 0; productions[i].rule[j] != '\0'; j++) {
-            if (!isupper(productions[i].rule[j]) && productions[i].rule[j] != '/') {
-                printf(" %c", productions[i].rule[j]);
+    printf("\nthe terminals are: ");
+    for(i=0;i<n;i++)
+    {
+        for(j=0;g[i].rule[j]!='\0';j++)
+        {
+            if(!isupper(g[i].rule[j])&&(g[i].rule[j]!='/'))
+            {
+                printf("%c ",g[i].rule[j]);
             }
         }
     }
-
     getch();
-    return 0;
 }
