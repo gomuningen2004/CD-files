@@ -15,14 +15,12 @@ int main() {
     scanf("%d", &n);
     printf("Enter the productions:\n");
 
-    // Initialize starting symbol flag
     int starting_symbol_set = 0;
 
     for (i = 0; i < n; i++) {
         printf("Enter the non-terminal: ");
         scanf(" %c", &productions[i].non_terminal);
 
-        // If starting symbol is not set yet, set it to the current non-terminal
         if (!starting_symbol_set) {
             productions[i].starting_symbol = productions[i].non_terminal;
             starting_symbol_set = 1;
@@ -31,7 +29,6 @@ int main() {
         printf("Enter the RHS production: ");
         scanf("%s", productions[i].rule);
 
-        // Update starting symbol for subsequent productions
         if (i > 0) {
             productions[i].starting_symbol = productions[i - 1].starting_symbol;
         }

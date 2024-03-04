@@ -9,11 +9,11 @@ int main() {
     printf("Enter the number of productions: ");
     scanf("%d", &n);
     printf("Enter %d productions:\n", n);
-    getchar(); // Consume the newline character left in the input buffer
+    getchar();
     
     for(k = 1; k <= n; k++) {
         fgets(prod[k], sizeof(prod[k]), stdin);
-        prod[k][strlen(prod[k]) - 1] = '\0'; // Remove the newline character
+        prod[k][strlen(prod[k]) - 1] = '\0';
     }
     
     for(k = 1; k <= n; k++) {
