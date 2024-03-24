@@ -1,36 +1,38 @@
 #include<stdio.h>
 #include<string.h>
+#include<stdlib.h>
 
-int main() {
-    char prod[20], alpha[20], beta[20];
-    int i, j;
-    
-    printf("Enter the production: ");
-    fgets(prod, sizeof(prod), stdin);
-    
-    if(prod[0] == prod[3]) {
-        printf("\nThe entered production is left recursive.\n");
-        i = 4;
-        j = 0;
-        while(prod[i] != '/') {
-            alpha[j++] = prod[i++];
+void main()
+{
+    char p[20], a[20], b[20];
+    int i = 4, j = 0; // Initialized i and j directly
+
+    printf("enter the production:");
+    gets(p);
+
+    if(p[0] == p[3])
+    {
+        printf("\nentered production is left recursive");
+
+        while(p[i] != '/')
+        {
+            a[j++] = p[i++];
         }
-        alpha[j] = '\0';
-        
-        i = i + 1;
+        a[j] = '\0';
+        i++; // Move to skip '/'
         j = 0;
-        while(prod[i] != '\0') {
-            beta[j++] = prod[i++];
+        while(p[i] != '\0')
+        {
+            b[j++] = p[i++];
         }
-        beta[j] = '\0';
-        
-        printf("\nThe production after removing the left recursion is:\n");
-        printf("\n%c->%s%c'", prod[0], beta, prod[0]);
-        printf("\n%c'->%s%c'/$\n", prod[0], alpha, prod[0]);
+        b[j] = '\0';
+
+        printf("\nthe production after removing the left productions is:\n");
+        printf("\n%c->%s%c'", p[0], b, p[0]);
+        printf("\n%c'->%s%c'/$", p[0], a, p[0]);
     }
-    else {
-        printf("The entered production is not left recursive.\n");
+    else
+    {
+        printf("entered production is not left recursive");
     }
-    
-    return 0;
 }
