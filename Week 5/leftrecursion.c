@@ -1,38 +1,35 @@
 #include<stdio.h>
 #include<string.h>
-#define SIZE 10
 
 int main() {
-    char nt, b, a, p[10][SIZE];
-    int n, i = 3;
+    char prod[20], alpha[20], beta[20];
+    int i, j;
     
-    printf("Enter Number of Production : ");
-    scanf("%d", &n);
+    printf("Enter the production: ");
+    fgets(prod, sizeof(prod), stdin);
     
-    printf("Enter the grammar as E->E-A :\n");
-    for (int j = 0; j < n; j++) {
-        scanf("%s", p[j]);
+    if(prod[0] == prod[3]) {
+        printf("\nThe entered production is left recursive.\n");
+        i = 4;
+        j = 0;
+        while(prod[i] != '/') {
+            alpha[j++] = prod[i++];
+        }
+        alpha[j] = '\0';
+        
+        i = i + 1;
+        j = 0;
+        while(prod[i] != '\0') {
+            beta[j++] = prod[i++];
+        }
+        beta[j] = '\0';
+        
+        printf("\nThe production after removing the left recursion is:\n");
+        printf("\n%c->%s%c'", prod[0], beta, prod[0]);
+        printf("\n%c'->%s%c'/$\n", prod[0], alpha, prod[0]);
     }
-    
-    for (int j = 0; j < n; j++) {
-        printf("\nGRAMMAR %s", p[j]);
-        nt = p[j][0];
-        if (nt == p[j][i]) {
-            a = p[j][i + 1];
-            printf(" is left recursive.\n");
-            while (p[j][i] != 0 && p[j][i] != '|')
-                i++;
-            
-            if (p[j][i] != 0) {
-                b = p[j][i + 1];
-                printf("Grammar without left recursion:\n");
-                printf("%c->%c%c'", nt, b, nt);
-                printf("\n%c'->%c%c'|E\n", nt, a, nt);
-            } else
-                printf(" can't be reduced\n");
-        } else
-            printf(" is not left recursive.\n");
-        i = 3;
+    else {
+        printf("The entered production is not left recursive.\n");
     }
     
     return 0;
