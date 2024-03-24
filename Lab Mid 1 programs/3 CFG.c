@@ -1,53 +1,45 @@
-#include<stdio.h>
-#include<conio.h>
-#include<ctype.h>
+#include <stdio.h>
+#include <ctype.h>
 
-struct str
-{
-    char st[1];
-    char rule[20];
-}g[15];
+struct p {
+    char n;
+    char r[20];
+};
 
-void main()
-{
-    int i,j,n;
-    printf("enter the number of productions:");
-    scanf("%d",&n);
-    printf("enter the productions:\n");
-    
-    for(i=0;i<n;i++)
-    {
-        printf("enter the non-terminal: ");
-        scanf("%s",g[i].st);
-        printf("enter the RHS production: ");
-        scanf("%s",g[i].rule);
+int main() {
+    struct p p[15];
+    int n, i, j;
+
+    printf("Enter the number of productions: ");
+    scanf("%d", &n);
+
+    printf("Enter the productions:\n");
+    for (i = 0; i < n; i++) {
+        printf("Enter the non-terminal: ");
+        scanf(" %c", &p[i].n);
+        printf("Enter the RHS production: ");
+        scanf("%s", p[i].r);
     }
 
-    printf("\nentered productions are:\n");
-    for(i=0;i<n;i++)
-    {
-        printf("%c%c%c",g[i].st[0],'-','>');
-        printf("%s\n",g[i].rule);
-        printf("the starting symbol of the production is: ");
-        printf("%c\n",g[i].st[0]);
+    printf("\nEntered productions are:\n");
+    for (i = 0; i < n; i++) {
+        printf("%c -> %s\n", p[i].n, p[i].r);
+        printf("The starting symbol of the production is: %c\n", p[i].n);
     }
 
-    printf("\nthe non-terminals are: ");
-    for(i=0;i<n;i++)
-    {
-        printf("%c ",g[i].st[0]);
+    printf("\nThe non-terminals are: ");
+    for (i = 0; i < n; i++) {
+        printf("%c ", p[i].n);
     }
 
-    printf("\nthe terminals are: ");
-    for(i=0;i<n;i++)
-    {
-        for(j=0;g[i].rule[j]!='\0';j++)
-        {
-            if(!isupper(g[i].rule[j])&&(g[i].rule[j]!='/'))
-            {
-                printf("%c ",g[i].rule[j]);
+    printf("\nThe terminals are: ");
+    for (i = 0; i < n; i++) {
+        for (j = 0; p[i].r[j] != '\0'; j++) {
+            if (!isupper(p[i].r[j]) && p[i].r[j] != '/') {
+                printf("%c ", p[i].r[j]);
             }
         }
     }
-    getch();
+
+    return 0;
 }
