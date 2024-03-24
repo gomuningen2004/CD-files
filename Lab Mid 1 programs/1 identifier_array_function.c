@@ -1,47 +1,108 @@
 #include <stdio.h>
 #include <ctype.h>
-#include <string.h>
 
-int isIdentifier(const char *str) {
-    if (*str == '\0' || !isalpha((unsigned char)*str) && *str != '_') {
-        return 0;
+int d(char str[]) {
+    int s = 0;
+    int i = 0;
+
+    if (isalpha(str[0])) {
+        s = 1;
+    } else if (isdigit(str[0])) {
+        s = 2;
+    } else {
+        s = 10;
     }
 
-    while (*++str) {
-        if (!isalnum((unsigned char)*str) && *str != '_') {
-            return 0;
+    while (str[i] != '\0') {
+        switch (s) {
+            case 1:
+                if (isalnum(str[i])) {
+                    s = 1;
+                } else if (str[i] == '(') {
+                    s = 3;
+                } else if (str[i] == '[') {
+                    s = 5;
+                } else {
+                    s = 10;
+                }
+                break;
+
+            case 2:
+                if (isdigit(str[i])) {
+                    s = 2;
+                } else if (str[i] == '.' && isdigit(str[i + 1])) {
+                    s = 4;
+                } else {
+                    s = 10;
+                }
+                break;
+
+            case 3:
+                if (str[i] == ')' && str[i + 1] == '\0') {
+                    s = 6;
+                } else {
+                    s = 10;
+                }
+                break;
+
+            case 4:
+                if (isdigit(str[i])) {
+                    s = 4;
+                } else {
+                    s = 10;
+                }
+                break;
+
+            case 5:
+                if (isdigit(str[i])) {
+                    s = 5;
+                } else if (str[i] == ']' && str[i + 1] == '\0') {
+                    s = 7;
+                } else {
+                    s = 10;
+                }
+                break;
+        }
+
+        i++;
+
+        if (s == 10) {
+            break;
         }
     }
 
-    return 1;
-}
-
-int isArray(const char *str) {
-    int len = strlen(str);
-    return (len >= 3 && str[len - 1] == ']' && strchr(str, '[') != NULL);
-}
-
-int isFunction(const char *str) {
-    int len = strlen(str);
-    return (len >= 2 && str[len - 1] == ')' && strchr(str, '(') != NULL);
+    return s;
 }
 
 int main() {
-    char input[100];
+    char s[20];
 
-    printf("Enter a string: ");
-    fgets(input, sizeof(input), stdin);
+    printf("Enter the string: ");
+    gets(s);
 
-    input[strcspn(input, "\n")] = '\0';
+    int t = d(s);
 
-    if (isIdentifier(input)) {
-        printf("'%s' is a valid identifier.\n", input);
-    } else if (isArray(input)) {
-        printf("'%s' is an array.\n", input);
-    } else if (isFunction(input)) {
-        printf("'%s' is a function.\n", input);
-    } else {
-        printf("'%s' is not a valid identifier, array, or function.\n", input);
+    printf("%s\n", s);
+
+    switch (t) {
+        case 1:
+            printf("%s is a variable.\n", s);
+            break;
+        case 2:
+            printf("%s is an integer constant.\n", s);
+            break;
+        case 4:
+            printf("%s is a real constant.\n", s);
+            break;
+        case 6:
+            printf("%s is a function.\n", s);
+            break;
+        case 7:
+            printf("%s is an array.\n", s);
+            break;
+        default:
+            printf("%s is not a valid expression.\n", s);
+            break;
     }
 
     return 0;
