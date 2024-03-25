@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <conio.h>
+
 int i = 0, t = 1;
+
 char str[20];
 void E();
 void EPRIME();
@@ -8,6 +10,7 @@ void T();
 void TPRIME();
 void F();
 void error();
+
 void main()
 {
     printf("the given grammer is:\n");
