@@ -10,7 +10,7 @@ void main()
     scanf("%d", &n);
     printf("enter the %d productions:", n);
 
-    for(i = 0; i < n; i++) // Corrected loop condition to avoid reading an extra production
+    for(i = 0; i <= n; i++) // Corrected loop condition to avoid reading an extra production
     {
         gets(p[i]);
     }
