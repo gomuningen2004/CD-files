@@ -362,12 +362,10 @@ char *yytext;
 #line 1 "simple.l"
 #define INITIAL 0
 #line 2 "simple.l"
-/* Definition section */
-#include<stdio.h> 
-#include "y.tab.h" 
-extern int yylval; 
-/* Rule Section */
-#line 371 "lex.yy.c"
+#include<stdio.h>
+#include "simple.tab.h"
+extern int yylval;
+#line 369 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -518,9 +516,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 9 "simple.l"
+#line 7 "simple.l"
 
-#line 524 "lex.yy.c"
+
+#line 523 "lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -605,34 +604,33 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 10 "simple.l"
-{ 
-		yylval=atoi(yytext); 
-		return NUMBER; 
-
-	} 
+#line 9 "simple.l"
+{
+    yylval = atoi(yytext);
+    return NUMBER;
+}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 15 "simple.l"
-; 
+#line 14 "simple.l"
+;
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 17 "simple.l"
-return 0; 
+#line 16 "simple.l"
+return 0;
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 19 "simple.l"
-return yytext[0]; 
+#line 18 "simple.l"
+return yytext[0];
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 21 "simple.l"
+#line 20 "simple.l"
 ECHO;
 	YY_BREAK
-#line 636 "lex.yy.c"
+#line 634 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1518,10 +1516,9 @@ int main()
 	return 0;
 	}
 #endif
-#line 21 "simple.l"
+#line 20 "simple.l"
 
 
-int yywrap() 
-{ 
-return 1; 
-} 
+int yywrap() {
+    return 1;
+}
