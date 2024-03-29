@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <conio.h>
 
 int i = 0, t = 1;
 
@@ -30,7 +29,6 @@ void main()
     {
         printf("the given string is accepted");
     }
-    getch();
 }
 
 void E()
